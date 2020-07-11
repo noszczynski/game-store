@@ -11,6 +11,7 @@ import {
   Search,
   Store,
   YouTube,
+  Delete,
 } from "@material-ui/icons";
 import { shadows } from "../../utils/variables";
 import sizes from "../../utils/sizes";
@@ -31,6 +32,7 @@ const SideMenu = () => {
     store: { label: "Store", link: "/store", icon: <Store /> },
     games: { label: "Games", link: "/games", icon: <List /> },
     favorite: { label: "Favorite", link: "/favorite", icon: <Favorite /> },
+    mamuski: { label: "Mamuśki", link: "/mamuski", icon: <Delete /> },
   };
 
   const MENU_SCHEMA = objectToArray(menu);
