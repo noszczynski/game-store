@@ -8,8 +8,7 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-gap: 1rem;
-  max-width: 1000px;
-  padding: ${sizes.padding.lite};
+  height: 100vh;
 `;
 
 const Content = styled.section`
