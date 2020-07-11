@@ -8,6 +8,11 @@ const LogoContainer = styled.div`
   padding: ${sizes.padding.lite};
   text-transform: uppercase;
   color: ${colors.dark};
+
+  a {
+    font-size: 2rem;
+    font-weight: 700;
+  }
 `;
 
 const Logo = () => {
