@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import sizes from "../utils/sizes";
-import GameBox from "../components/GameBox";
 import { filterArrayByFields } from "../utils/utils";
+import GameBoxDefault from "../components/GameBoxes/variants/GameBoxDefault";
+import GameBoxLabel from "../components/GameBoxes/variants/GameBoxLabel";
 
 // TODO data eventually it will be taken from cms
 const GAMES_MOCK = [
@@ -65,7 +66,7 @@ const GAMES_MOCK = [
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-row: 200px;
+  grid-auto-rows: 200px;
   gap: ${sizes.padding.lite};
 `;
 
@@ -95,7 +96,10 @@ function Games() {
       >
         <Wrapper>
           {filteredGames.map((game, index) => (
-            <GameBox game={game} key={index} />
+            <GameBoxDefault game={game} key={index} />
+          ))}
+          {filteredGames.map((game, index) => (
+            <GameBoxLabel game={game} key={index} />
           ))}
         </Wrapper>
       </Layout>
