@@ -20,6 +20,10 @@ import styled from "styled-components";
 const Aside = styled.aside`
   box-shadow: ${shadows.first};
   padding: ${sizes.padding.lite};
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
 `;
 
 const SideMenu = () => {
