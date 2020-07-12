@@ -4,6 +4,7 @@ import styled from "styled-components";
 import sizes from "../utils/sizes";
 import GameBox from "../components/GameBox";
 import { filterArrayByFields } from "../utils/utils";
+import api from "../api/api";
 
 // TODO data eventually it will be taken from cms
 const GAMES_MOCK = [
@@ -73,15 +74,22 @@ function Games() {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  // Getting games from api
+  const gamesFromApi = async () => {
+    await fetch(api.games)
+    .then(response => response.json()).then(data => {
+      setGames(data);
+    });
+  }
 
   useEffect(() => {
-    setGames(GAMES_MOCK);
+    gamesFromApi();
   }, []);
 
   useEffect(() => {
     setFilteredGames(
       searchTerm.length
-        ? filterArrayByFields(searchTerm, games, ["title"])
+        ? filterArrayByFields(searchTerm, games, ["Keywords"])
         : games
     );
   }, [games, searchTerm]);

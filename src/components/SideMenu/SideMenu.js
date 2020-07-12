@@ -36,7 +36,7 @@ const SideMenu = () => {
     store: { label: "Store", link: "/store", icon: <Store /> },
     games: { label: "Games", link: "/games", icon: <List /> },
     favorite: { label: "Favorite", link: "/favorite", icon: <Favorite /> },
-    mamuski: { label: "Mamuśki", link: "/mamuski", icon: <Delete /> },
+    delete: { label: "Delete", link: "/delete", icon: <Delete /> },
   };
 
   const MENU_SCHEMA = objectToArray(menu);
