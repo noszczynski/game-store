@@ -4,6 +4,7 @@ import MenuItem from "../MenuItem/MenuItem";
 import Logo from "../Logo/Logo";
 import {
   ChatBubble,
+  Delete,
   Favorite,
   List,
   Person,
@@ -11,7 +12,6 @@ import {
   Search,
   Store,
   YouTube,
-  Delete,
 } from "@material-ui/icons";
 import { shadows } from "../../utils/variables";
 import sizes from "../../utils/sizes";
