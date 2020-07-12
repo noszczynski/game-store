@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import sizes from "../utils/sizes";
 import Link from "./Link/Link";
-import api from "../api/api";
+import { apiUrl } from "../api/api";
 
 const Wrapper = styled.div`
   position: relative;
@@ -44,7 +44,7 @@ const GameBox = ({ game }) => {
   return (
     <Link href={"/"}>
       <Wrapper>
-          <Cover src={`${api.link}${cover.url}`} alt={"game-img"} />
+          <Cover src={`${apiUrl}${cover.url}`} alt={"game-img"} />
         <Title>{name}</Title>
       </Wrapper>
     </Link>

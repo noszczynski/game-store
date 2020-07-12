@@ -1,6 +1,13 @@
+const apiUrl = "http://localhost:1337";
+
 const api = {
-    link:"http://localhost:1337",
-    games: "http://localhost:1337/games"
+    games: apiUrl+"/games"
 }
 
-export default api;
+// Getting games from api
+const apiGames = () => {
+    return fetch(api.games)
+    .then(response => {return response.json()});
+}
+
+export {apiUrl, api, apiGames};
