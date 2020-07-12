@@ -3,9 +3,8 @@ import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import sizes from "../utils/sizes";
 import { filterArrayByFields } from "../utils/utils";
-import GameBoxDefault from "../components/GameBoxes/variants/GameBoxDefault";
-import GameBoxLabel from "../components/GameBoxes/variants/GameBoxLabel";
 import { apiGames } from "../api/api";
+import GameBox from "../components/GameBoxes/variants/GameBox";
 
 const Wrapper = styled.div`
   display: grid;
@@ -42,10 +41,11 @@ function Games() {
       >
         <Wrapper>
           {filteredGames.map((game, index) => (
-            <GameBoxDefault game={game} key={index} />
-          ))}
-          {filteredGames.map((game, index) => (
-            <GameBoxLabel game={game} key={index} />
+            <GameBox
+              game={game}
+              variant={index % 2 === 0 ? "primary" : "secondary"}
+              key={index}
+            />
           ))}
         </Wrapper>
       </Layout>
