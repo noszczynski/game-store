@@ -22,13 +22,13 @@ const Title = styled.div`
 `;
 
 const GameBoxDefault = ({ game }) => {
-  const { title, cover } = game;
+  const { name, cover } = game;
 
   return (
     <Link href={"/"}>
       <Wrapper>
-        <Cover src={cover} alt={"game-img"} />
-        <Title>{title}</Title>
+        <Cover src={`${apiUrl}${cover.url}`} alt={"game-img"} />
+        <Title>{name}</Title>
       </Wrapper>
     </Link>
   );

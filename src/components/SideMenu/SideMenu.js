@@ -4,7 +4,6 @@ import MenuItem from "../MenuItem/MenuItem";
 import Logo from "../Logo/Logo";
 import {
   ChatBubble,
-  Delete,
   Favorite,
   List,
   Person,
@@ -36,7 +35,6 @@ const SideMenu = () => {
     store: { label: "Store", link: "/store", icon: <Store /> },
     games: { label: "Games", link: "/games", icon: <List /> },
     favorite: { label: "Favorite", link: "/favorite", icon: <Favorite /> },
-    mamuski: { label: "Mamuśki", link: "/mamuski", icon: <Delete /> },
   };
 
   const MENU_SCHEMA = objectToArray(menu);
