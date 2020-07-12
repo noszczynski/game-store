@@ -44,7 +44,7 @@ const GameBox = ({ game }) => {
   return (
     <Link href={"/"}>
       <Wrapper>
-          <Cover src={`${apiUrl}${cover.url}`} alt={"game-img"} />
+        <Cover src={`${apiUrl}${cover.url}`} alt={"game-img"} />
         <Title>{name}</Title>
       </Wrapper>
     </Link>

@@ -4,7 +4,6 @@ import MenuItem from "../MenuItem/MenuItem";
 import Logo from "../Logo/Logo";
 import {
   ChatBubble,
-  Delete,
   Favorite,
   List,
   Person,

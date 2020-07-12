@@ -4,7 +4,7 @@ import styled from "styled-components";
 import sizes from "../utils/sizes";
 import GameBox from "../components/GameBox";
 import { filterArrayByFields } from "../utils/utils";
-import {apiGames} from "../api/api";
+import { apiGames } from "../api/api";
 
 const Wrapper = styled.div`
   display: grid;
@@ -19,7 +19,7 @@ function Games() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    apiGames().then(data => {
+    apiGames().then((data) => {
       setGames(data);
     });
   }, []);
