@@ -8,6 +8,7 @@ const colors = {
   violet: "#a77de0",
   red: "#D30040",
   transparentDark: "rgba(0,0,0,0.05)",
+  transparent: "rgba(0,0,0,0)",
   background: {
     light: "#fdfdfd",
     dark: "",
