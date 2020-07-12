@@ -11,6 +11,7 @@ import {
   Search,
   Store,
   YouTube,
+  Delete,
 } from "@material-ui/icons";
 import { shadows } from "../../utils/variables";
 import sizes from "../../utils/sizes";
@@ -19,6 +20,10 @@ import styled from "styled-components";
 const Aside = styled.aside`
   box-shadow: ${shadows.first};
   padding: ${sizes.padding.lite};
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
 `;
 
 const SideMenu = () => {
@@ -31,6 +36,7 @@ const SideMenu = () => {
     store: { label: "Store", link: "/store", icon: <Store /> },
     games: { label: "Games", link: "/games", icon: <List /> },
     favorite: { label: "Favorite", link: "/favorite", icon: <Favorite /> },
+    mamuski: { label: "Mamuśki", link: "/mamuski", icon: <Delete /> },
   };
 
   const MENU_SCHEMA = objectToArray(menu);
