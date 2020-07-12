@@ -22,7 +22,7 @@ const Content = styled.section`
   display: flex;
   flex-direction: column;
   padding: ${sizes.padding.lite} 0;
-  margin: 88px 0 0 300px;
+  margin: 88px 1rem 0 300px;
 `;
 
 const Layout = ({ title, searchTerm, searchTermSetter, children }) => {
