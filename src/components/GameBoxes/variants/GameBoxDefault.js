@@ -7,6 +7,7 @@ import Link from "../../Link/Link";
 import GameBox from "../GameBox";
 import Cover from "../Cover";
 import Wrapper from "../Wrapper";
+import { apiUrl } from "../../../api/api";
 
 const Title = styled.div`
   position: absolute;
