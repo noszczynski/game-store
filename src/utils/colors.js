@@ -1,4 +1,16 @@
 const colors = {
+  lightTheme: {
+    primaryFontColor: "#3a3a3a",
+    secondaryFontColor: "#D30040",
+    primaryBackgroundColor: "#fdfdfd",
+    secondaryBackgroundColor: "#f5f5f5",
+  },
+  darkTheme: {
+    primaryFontColor: "#fff",
+    secondaryFontColor: "#a77de0",
+    primaryBackgroundColor: "#000",
+    secondaryBackgroundColor: "#0C0D0D",
+  },
   light: "#FFFFFF",
   gray100: "#fdfdfd", // background-light-theme
   gray300: "#90929A",
