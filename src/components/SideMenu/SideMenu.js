@@ -23,6 +23,7 @@ const Aside = styled.aside`
   top: 0;
   left: 0;
   height: 100%;
+  background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
 `;
 
 const SideMenu = () => {

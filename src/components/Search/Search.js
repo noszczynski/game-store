@@ -1,7 +1,6 @@
 import React from "react";
 import { Search as SearchIcon } from "@material-ui/icons";
 import styled from "styled-components";
-import sizes from "../../utils/sizes";
 import colors from "../../utils/colors";
 import Input from "../Input/Input";
 import PropTypes from "prop-types";
@@ -12,17 +11,17 @@ const Wrapper = styled.div`
   left: 281px;
   z-index: 100;
   width: 100%;
-  padding: ${sizes.padding.standard} ${sizes.padding.lite};
-  background-color: ${colors.gray100};
+  padding: ${({ theme }) => `1.5rem ${theme.sizes.padding.lite} 1.5rem 0`};
+  background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
 `;
 
 const WrapperInner = styled.div`
-  padding: 0.5rem ${sizes.padding.lite};
+  padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  background-color: ${colors.searchBar.light};
+  background-color: ${({ theme }) => theme.colors.searchBar};
 `;
 
 const Icon = styled(SearchIcon)`

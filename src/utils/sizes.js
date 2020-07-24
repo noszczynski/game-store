@@ -14,6 +14,12 @@ const sizes = {
     menu: "1.2rem",
     pageTitle: "1.8rem",
   },
+  fontWeight: {
+    light: 300,
+    regular: 400,
+    medium: 500,
+    bold: 700,
+  },
 };
 
 export default sizes;

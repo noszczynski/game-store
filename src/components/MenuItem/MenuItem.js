@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import sizes from "../../utils/sizes";
 import Link from "../Link/Link";
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 0.5rem ${sizes.padding.lite};
+  padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
 `;
 
 const WrapperInner = styled.div`
@@ -14,12 +13,13 @@ const WrapperInner = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
-const Label = styled.div`
-  font-size: ${sizes.fonts.menu};
-  margin-left: ${sizes.padding.lite};
-  font-weight: 500;
+const Label = styled.span`
+  font-size: ${({ theme }) => theme.sizes.fonts.menu};
+  margin-left: ${({ theme }) => theme.sizes.padding.lite};
+  font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
 `;
 
 const MenuItem = ({ item: { label, link, icon } }) => {

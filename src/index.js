@@ -3,14 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import AppRouter from "./AppRouter";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./utils/theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <AppRouter />
-    </ThemeProvider>
+    <AppRouter />
   </React.StrictMode>,
   document.getElementById("root")
 );

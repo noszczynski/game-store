@@ -33,23 +33,21 @@ function Games() {
   }, [games, searchTerm]);
 
   return (
-    <div className="App">
-      <Layout
-        title={"Games"}
-        searchTerm={searchTerm}
-        searchTermSetter={setSearchTerm}
-      >
-        <Wrapper>
-          {filteredGames.map((game, index) => (
-            <GameBox
-              game={game}
-              variant={index % 2 === 0 ? "primary" : "secondary"}
-              key={index}
-            />
-          ))}
-        </Wrapper>
-      </Layout>
-    </div>
+    <Layout
+      title={"Games"}
+      searchTerm={searchTerm}
+      searchTermSetter={setSearchTerm}
+    >
+      <Wrapper>
+        {filteredGames.map((game, index) => (
+          <GameBox
+            game={game}
+            variant={index % 2 === 0 ? "primary" : "secondary"}
+            key={index}
+          />
+        ))}
+      </Wrapper>
+    </Layout>
   );
 }
 

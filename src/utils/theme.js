@@ -4,11 +4,23 @@ import { fonts } from "./fonts";
 import sizes from "./sizes";
 import { device } from "./breakpoints";
 
-export const theme = {
-  colors: colors,
+const rest = {
   fonts: fonts,
-  shadows: shadows,
   sizes: sizes,
   rounded: rounded,
   breakpoints: device,
 };
+
+const lightTheme = {
+  ...rest,
+  colors: colors.lightTheme,
+  shadows: shadows.lightTheme,
+};
+
+const darkTheme = {
+  ...rest,
+  colors: colors.darkTheme,
+  shadows: shadows.darkTheme,
+};
+
+export { lightTheme, darkTheme };

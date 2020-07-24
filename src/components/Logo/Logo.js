@@ -1,17 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import sizes from "../../utils/sizes";
-import colors from "../../utils/colors";
 import Link from "../Link/Link";
 
 const LogoContainer = styled.div`
-  padding: ${sizes.padding.lite};
+  padding: ${({ theme }) => theme.sizes.padding.lite} 0;
   text-transform: uppercase;
-  color: ${colors.dark};
+
+  p {
+    color: ${({ theme }) => theme.colors.primaryFontColor};
+    padding: 0;
+    margin: 0;
+  }
 
   a {
     font-size: 2rem;
     font-weight: 700;
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors.activeFontColor};
   }
 `;
 
@@ -19,7 +26,9 @@ const Logo = () => {
   return (
     <LogoContainer>
       <Link href={"/"}>
-        <span>GAMES STORE</span>
+        <p>
+          GAMES <span>STORE</span>
+        </p>
       </Link>
     </LogoContainer>
   );
