@@ -1,5 +1,5 @@
 const rest = {
-  light: "#FFFFFF",
+  light: "#fff",
   gray100: "#fdfdfd", // background-light-theme
   gray300: "#90929A",
   gray700: "#171818",
@@ -26,6 +26,7 @@ const colors = {
     ...rest,
     primaryFontColor: "#1a1a1a",
     secondaryFontColor: "#3a3a3a",
+    tertiaryFontColor: "#fdfdfd",
     primaryBackgroundColor: "#fdfdfd",
     secondaryBackgroundColor: "#f4f4f4",
     searchBar: "#f5f5f5",
@@ -35,6 +36,7 @@ const colors = {
     ...rest,
     primaryFontColor: "#fff",
     secondaryFontColor: "#a77de0",
+    tertiaryFontColor: "#0C0D0D",
     primaryBackgroundColor: "#000",
     secondaryBackgroundColor: "#0C0D0D",
     searchBar: "#000",
