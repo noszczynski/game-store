@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SideMenu from "../SideMenu/SideMenu";
 import styled, { ThemeProvider } from "styled-components";
@@ -10,7 +10,7 @@ import { darkTheme, lightTheme } from "../../utils/theme";
 const Wrapper = styled.section`
   height: 100vh;
   display: grid;
-  grid-template-columns: 281px 1fr;
+  grid-template-columns: 250px 1fr;
   grid-template-areas: ". content";
 `;
 
@@ -20,16 +20,16 @@ const Title = styled.section`
   text-transform: capitalize;
   font-weight: ${({ theme }) => theme.sizes.fontWeight.bold};
   font-size: ${({ theme }) => theme.sizes.fonts.pageTitle};
+  transition: color 0.3s, background-color 0.3s;
 `;
 
 const Content = styled.section`
   display: flex;
   flex-direction: column;
-  padding: ${({ theme }) => theme.sizes.padding.lite} 0;
+  padding: 88px 0 ${({ theme }) => theme.sizes.padding.lite};
   grid-area: content;
-  position: relative;
-  top: 88px;
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  transition: color 0.3s, background-color 0.3s;
 `;
 
 const ContentWrapper = styled.div`
@@ -47,6 +47,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: color 0.3s, background-color 0.3s;
     
     ${({ theme }) => `
         color: ${theme.colors.primaryFontColor};
@@ -60,22 +61,37 @@ const THEMES = {
 };
 
 const Layout = ({ title, searchTerm, searchTermSetter, children }) => {
-  const [currentTheme, setCurrentTheme] = useState(THEMES.LIGHT);
+  const [currentTheme, setCurrentTheme] = useState(
+    localStorage.getItem("theme")
+  );
 
   const handleSetTheme = () => {
     switch (currentTheme) {
-      case THEMES.LIGHT:
+      case THEMES.LIGHT: {
+        localStorage.setItem("theme", THEMES.DARK);
         return THEMES.DARK;
-      case THEMES.DARK:
+      }
+      case THEMES.DARK: {
+        localStorage.setItem("theme", THEMES.LIGHT);
         return THEMES.LIGHT;
+      }
       default:
         return THEMES.LIGHT;
     }
   };
 
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    console.log(theme);
+    localStorage.setItem("theme", theme ? theme : THEMES.LIGHT);
+    setCurrentTheme(theme ? theme : THEMES.LIGHT);
+  }, []);
+
   return (
     <ThemeProvider
-      theme={currentTheme === THEMES.LIGHT ? lightTheme : darkTheme}
+      theme={
+        currentTheme === THEMES.LIGHT || !currentTheme ? lightTheme : darkTheme
+      }
     >
       <GlobalStyle />
       <Wrapper>
@@ -85,7 +101,7 @@ const Layout = ({ title, searchTerm, searchTermSetter, children }) => {
           <ContentWrapper>
             <Title>{title}</Title>
             <button onClick={() => setCurrentTheme(handleSetTheme())}>
-              change theme to {handleSetTheme()}
+              current theme is {currentTheme}
             </button>
             <main>{children}</main>
             <footer>© {new Date().getFullYear()}</footer>

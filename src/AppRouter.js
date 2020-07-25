@@ -6,6 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 import Games from "./views/Games";
+import SearchView from "./views/SearchView";
+import Profile from "./views/Profile";
 
 const AppRouter = () => {
   return (
@@ -16,6 +18,12 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/games">
           <Games />
+        </Route>
+        <Route exact path="/search">
+          <SearchView />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </Router>

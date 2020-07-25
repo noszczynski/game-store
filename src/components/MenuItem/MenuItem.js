@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Link from "../Link/Link";
+import { NavLink } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,15 +22,30 @@ const Label = styled.span`
   font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
 `;
 
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primaryFontColor};
+
+  :hover {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.primaryFontColor};
+  }
+
+  &.current span,
+  &.current svg {
+    color: ${({ theme }) => theme.colors.activeFontColor};
+  }
+`;
+
 const MenuItem = ({ item: { label, link, icon } }) => {
   return (
     <Wrapper>
-      <Link href={link}>
+      <StyledNavLink to={link} activeClassName={"current"}>
         <WrapperInner>
           <div>{icon}</div>
           <Label>{label}</Label>
         </WrapperInner>
-      </Link>
+      </StyledNavLink>
     </Wrapper>
   );
 };

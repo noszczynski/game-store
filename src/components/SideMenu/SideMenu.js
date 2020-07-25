@@ -2,16 +2,7 @@ import React from "react";
 import { objectToArray } from "../../utils/utils";
 import MenuItem from "../MenuItem/MenuItem";
 import Logo from "../Logo/Logo";
-import {
-  ChatBubble,
-  Favorite,
-  List,
-  Person,
-  PersonAdd,
-  Search,
-  Store,
-  YouTube,
-} from "@material-ui/icons";
+import { List, Person, Search } from "@material-ui/icons";
 import { shadows } from "../../utils/variables";
 import sizes from "../../utils/sizes";
 import styled from "styled-components";
@@ -24,18 +15,19 @@ const Aside = styled.aside`
   left: 0;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
+  transition: color 0.3s, background-color 0.3s;
 `;
 
 const SideMenu = () => {
   const menu = {
-    profile: { label: "Profile", link: "/profile", icon: <Person /> },
-    search: { label: "Search", link: "/search", icon: <Search /> },
-    friend: { label: "Friend", link: "/friend", icon: <PersonAdd /> },
-    messages: { label: "Messages", link: "/messages", icon: <ChatBubble /> },
-    channels: { label: "Channels", link: "/channels", icon: <YouTube /> },
-    store: { label: "Store", link: "/store", icon: <Store /> },
     games: { label: "Games", link: "/games", icon: <List /> },
-    favorite: { label: "Favorite", link: "/favorite", icon: <Favorite /> },
+    search: { label: "Search", link: "/search", icon: <Search /> },
+    profile: { label: "Profile", link: "/profile", icon: <Person /> },
+    // friend: { label: "Friend", link: "/friend", icon: <PersonAdd /> },
+    // messages: { label: "Messages", link: "/messages", icon: <ChatBubble /> },
+    // channels: { label: "Channels", link: "/channels", icon: <YouTube /> },
+    // store: { label: "Store", link: "/store", icon: <Store /> },
+    // favorite: { label: "Favorite", link: "/favorite", icon: <Favorite /> },
   };
 
   const MENU_SCHEMA = objectToArray(menu);

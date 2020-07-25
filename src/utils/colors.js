@@ -29,7 +29,7 @@ const colors = {
     tertiaryFontColor: "#fdfdfd",
     primaryBackgroundColor: "#fdfdfd",
     secondaryBackgroundColor: "#f4f4f4",
-    searchBar: "#f5f5f5",
+    searchBar: "rgba(255,255,255,0.75)",
     activeFontColor: rest.violet,
   },
   darkTheme: {
@@ -39,7 +39,7 @@ const colors = {
     tertiaryFontColor: "#0C0D0D",
     primaryBackgroundColor: "#000",
     secondaryBackgroundColor: "#0C0D0D",
-    searchBar: "#000",
+    searchBar: "rgba(0,0,0,0.75)",
     activeFontColor: rest.red,
   },
 };

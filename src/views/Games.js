@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
-import sizes from "../utils/sizes";
 import { filterArrayByFields } from "../utils/utils";
-import { apiGames } from "../api/api";
+import { getGames } from "../api/api";
 import GameBox from "../components/GameBoxes/variants/GameBox";
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-auto-rows: 200px;
-  gap: ${sizes.padding.lite};
+  gap: ${({ theme }) => theme.sizes.padding.lite};
 `;
 
 function Games() {
@@ -19,7 +18,7 @@ function Games() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    apiGames().then((data) => {
+    getGames().then((data) => {
       setGames(data);
     });
   }, []);

@@ -5,10 +5,10 @@ const api = {
 };
 
 // Getting games from api
-const apiGames = () => {
+const getGames = () => {
   return fetch(api.games).then((response) => {
     return response.json();
   });
 };
 
-export { apiUrl, api, apiGames };
+export { apiUrl, api, getGames };
