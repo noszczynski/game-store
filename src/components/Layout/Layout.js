@@ -121,7 +121,7 @@ const Layout = ({
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.object),
   setFilteredData: PropTypes.func,
   children: PropTypes.node.isRequired,
   removeTopPadding: PropTypes.bool,
