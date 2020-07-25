@@ -18,4 +18,6 @@ const filterArrayByFields = (term, arr = [], fields = []) => {
   });
 };
 
-export { objectToArray, filterArrayByFields };
+const getLocalUser = () => JSON.parse(sessionStorage.getItem("user"));
+
+export { objectToArray, filterArrayByFields, getLocalUser };

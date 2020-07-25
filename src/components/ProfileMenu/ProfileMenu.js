@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { getLocalUser } from "../../utils/utils";
 
 const Wrapper = styled.section`
   display: flex;
@@ -33,9 +34,16 @@ const Menu = styled.div`
 `;
 
 const ProfileMenu = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const localUser = getLocalUser();
+    setUser(localUser);
+  }, []);
+
   return (
     <Wrapper>
-      <Label>Nickname</Label>
+      <Label>{user && user.nickname}</Label>
       <Photo>
         <img
           src={

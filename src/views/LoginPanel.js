@@ -1,46 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { authUser } from "../api/api";
-import { Input } from "@material-ui/core";
+import React, { useState } from "react";
 import styled from "styled-components";
+import LoginHeader from "../components/LoginHeader/LoginHeader";
+import ThemeProviderWrapper from "../components/ThemeProviderWrapper";
+import PropTypes from "prop-types";
+import LoginForm from "../components/Login/LoginForm";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  width: 50%;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+  padding: 0 ${({ theme }) => theme.sizes.padding.lite};
 `;
 
-const LoginPanel = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRemember] = useState(true);
+export const VIEWS = {
+  LOGIN: "LOGIN",
+  NEWS: "NEWS",
+  GAMES: "GAMES",
+};
 
-  const submit = () => {
-    authUser(email, password).then(({ jwt, user }) => {
-      window.sessionStorage.setItem("token", jwt);
-      sessionStorage.setItem("user", JSON.stringify(user));
-      if (rememberMe) {
-        localStorage.setItem("user", JSON.stringify(user));
+const LoginPanel = ({ setTheme }) => {
+  const [view, setView] = useState(VIEWS.LOGIN);
+
+  const renderView = () => {
+    switch (view) {
+      case VIEWS.LOGIN: {
+        return <LoginForm />;
       }
-      window.location.replace("/games");
-    });
+      case VIEWS.NEWS: {
+        return <div />;
+      }
+      case VIEWS.GAMES: {
+        return <div />;
+      }
+      default:
+        return null;
+    }
   };
-
-  useEffect(() => {
-    setEmail("adam.noszczynski@gmail.com");
-    setPassword("password");
-  }, []);
 
   return (
     <Wrapper>
-      <Input value={email} onChange={(e) => setEmail(e.target.value)} />
-      <Input value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={submit}>Login</button>
+      <LoginHeader setTheme={setTheme} setView={setView} />
+      {renderView()}
     </Wrapper>
   );
 };
 
-export default LoginPanel;
+LoginPanel.propTypes = {
+  setTheme: PropTypes.func,
+};
+
+export default ThemeProviderWrapper(LoginPanel);

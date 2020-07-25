@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import SideMenu from "../SideMenu/SideMenu";
-import styled, { ThemeProvider } from "styled-components";
-
-import { createGlobalStyle } from "styled-components";
-import { darkTheme, lightTheme } from "../../utils/theme";
+import styled from "styled-components";
 import TopBar from "./TopBar";
+import ThemeProviderWrapper from "../ThemeProviderWrapper";
 
 const Wrapper = styled.section`
   height: 100vh;
@@ -37,85 +35,26 @@ const ContentWrapper = styled.div`
   padding: 0 ${({ theme }) => theme.sizes.padding.lite};
 `;
 
-const GlobalStyle = createGlobalStyle`
-  *, *:before, *:after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transition: ${({ theme }) => theme.transitions.changeTheme};
-    
-    ${({ theme }) => `
-        color: ${theme.colors.primaryFontColor};
-        background-color: ${theme.colors.primaryBackgroundColor};
-      `}
-`;
-
-const THEMES = {
-  LIGHT: "lightTheme",
-  DARK: "darkTheme",
-};
-
 const Layout = ({
   title,
   data,
   setFilteredData,
   removeTopPadding,
+  setTheme,
   children,
 }) => {
-  const [currentTheme, setCurrentTheme] = useState(
-    localStorage.getItem("theme")
-  );
-
-  const handleSetTheme = () => {
-    switch (currentTheme) {
-      case THEMES.LIGHT: {
-        localStorage.setItem("theme", THEMES.DARK);
-        return THEMES.DARK;
-      }
-      case THEMES.DARK: {
-        localStorage.setItem("theme", THEMES.LIGHT);
-        return THEMES.LIGHT;
-      }
-      default:
-        return THEMES.LIGHT;
-    }
-  };
-
-  useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    localStorage.setItem("theme", theme ? theme : THEMES.LIGHT);
-    setCurrentTheme(theme ? theme : THEMES.LIGHT);
-  }, []);
-
   return (
-    <ThemeProvider
-      theme={
-        currentTheme === THEMES.LIGHT || !currentTheme ? lightTheme : darkTheme
-      }
-    >
-      <GlobalStyle />
-      <Wrapper>
-        <SideMenu />
-        <Content clearTopPadding={removeTopPadding}>
-          <TopBar
-            items={data}
-            setter={setFilteredData}
-            setTheme={() => setCurrentTheme(handleSetTheme())}
-          />
-          <ContentWrapper>
-            <Title>{title}</Title>
-            <main>{children}</main>
-            <footer>© {new Date().getFullYear()}</footer>
-          </ContentWrapper>
-        </Content>
-      </Wrapper>
-    </ThemeProvider>
+    <Wrapper>
+      <SideMenu />
+      <Content clearTopPadding={removeTopPadding}>
+        <TopBar items={data} setter={setFilteredData} setTheme={setTheme} />
+        <ContentWrapper>
+          <Title>{title}</Title>
+          <main>{children}</main>
+          <footer>© {new Date().getFullYear()}</footer>
+        </ContentWrapper>
+      </Content>
+    </Wrapper>
   );
 };
 
@@ -123,6 +62,7 @@ Layout.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.object),
   setFilteredData: PropTypes.func,
+  setTheme: PropTypes.func,
   children: PropTypes.node.isRequired,
   removeTopPadding: PropTypes.bool,
 };
@@ -133,4 +73,4 @@ Layout.defaultProps = {
   removeTopPadding: false,
 };
 
-export default Layout;
+export default ThemeProviderWrapper(Layout);
