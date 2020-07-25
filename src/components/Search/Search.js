@@ -28,16 +28,15 @@ const Icon = styled(SearchIcon)`
   color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
-const Search = ({ items, setter }) => {
+const Search = ({ items, setter, fields }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     setter(
-      searchTerm.length
-        ? filterArrayByFields(searchTerm, items, ["Keywords"])
-        : items
+      searchTerm.length ? filterArrayByFields(searchTerm, items, fields) : items
     );
-  }, [items, searchTerm, setter]);
+    // shouldn't be fields
+  }, [items, searchTerm, setter]); //eslint-disable-line
 
   return (
     <Wrapper>
@@ -53,8 +52,14 @@ const Search = ({ items, setter }) => {
 };
 
 Search.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+  fields: PropTypes.arrayOf(PropTypes.string),
   setter: PropTypes.func.isRequired,
+};
+
+Search.defaultProps = {
+  items: [],
+  fields: [],
 };
 
 export default Search;

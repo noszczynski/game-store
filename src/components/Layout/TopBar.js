@@ -25,11 +25,11 @@ const RightWrapper = styled.div`
   min-width: 170px;
 `;
 
-const TopBar = ({ items, setter, setTheme }) => {
+const TopBar = ({ items, searchFields, setter, setTheme }) => {
   return (
     <Wrapper>
       {setter !== undefined ? (
-        <Search items={items} setter={setter} />
+        <Search items={items} setter={setter} fields={searchFields} />
       ) : (
         <div />
       )}
@@ -43,12 +43,14 @@ const TopBar = ({ items, setter, setTheme }) => {
 
 TopBar.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
+  searchFields: PropTypes.arrayOf(PropTypes.string),
   setter: PropTypes.func,
   setTheme: PropTypes.func,
 };
 
 TopBar.defaultProps = {
   items: [],
+  searchFields: [],
   setter: undefined,
 };
 

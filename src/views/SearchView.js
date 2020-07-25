@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: grid;
@@ -16,21 +17,32 @@ const SearchedItem = styled.article`
 `;
 
 const SearchVIew = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+    { title: "search result mock", link: "/games" },
+  ]);
+  const [filteredResult, setFilteredResult] = useState([]);
 
   return (
     <Layout
       title={"Search"}
-      searchTerm={searchTerm}
-      searchTermSetter={setSearchTerm}
+      data={searchResult}
+      setFilteredData={setFilteredResult}
+      searchFields={["title"]}
     >
       <Wrapper>
-        <SearchedItem>search result mock</SearchedItem>
-        <SearchedItem>search result mock</SearchedItem>
-        <SearchedItem>search result mock</SearchedItem>
-        <SearchedItem>search result mock</SearchedItem>
-        <SearchedItem>search result mock</SearchedItem>
-        <SearchedItem>search result mock</SearchedItem>
+        {searchResult &&
+          filteredResult.map((result, index) => (
+            <Link to={result.link} key={index}>
+              <SearchedItem>{result.title}</SearchedItem>
+            </Link>
+          ))}
       </Wrapper>
     </Layout>
   );

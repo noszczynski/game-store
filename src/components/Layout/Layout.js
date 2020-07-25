@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SideMenu from "../SideMenu/SideMenu";
-import styled, { ThemeProvider } from "styled-components";
-
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../../utils/theme";
 import TopBar from "./TopBar";
 
@@ -64,6 +62,7 @@ const THEMES = {
 const Layout = ({
   title,
   data,
+  searchFields,
   setFilteredData,
   removeTopPadding,
   children,
@@ -105,6 +104,7 @@ const Layout = ({
         <Content clearTopPadding={removeTopPadding}>
           <TopBar
             items={data}
+            searchFields={searchFields}
             setter={setFilteredData}
             setTheme={() => setCurrentTheme(handleSetTheme())}
           />
@@ -121,14 +121,16 @@ const Layout = ({
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.object),
+  searchFields: PropTypes.arrayOf(PropTypes.string),
   setFilteredData: PropTypes.func,
   children: PropTypes.node.isRequired,
   removeTopPadding: PropTypes.bool,
 };
 
 Layout.defaultProps = {
-  data: null,
+  data: [],
+  searchFields: [],
   setFilteredData: undefined,
   removeTopPadding: false,
 };

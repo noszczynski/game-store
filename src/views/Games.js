@@ -22,7 +22,12 @@ function Games() {
   }, []);
 
   return (
-    <Layout title={"Games"} data={games} setFilteredData={setFilteredGames}>
+    <Layout
+      title={"Games"}
+      data={games}
+      setFilteredData={setFilteredGames}
+      searchFields={["Keywords"]}
+    >
       <Wrapper>
         {filteredGames.map((game, index) => (
           <GameBox game={game} variant={"secondary"} key={index} />
