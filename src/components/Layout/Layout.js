@@ -20,16 +20,17 @@ const Title = styled.section`
   text-transform: capitalize;
   font-weight: ${({ theme }) => theme.sizes.fontWeight.bold};
   font-size: ${({ theme }) => theme.sizes.fonts.pageTitle};
-  transition: color 0.3s, background-color 0.3s;
+  transition: ${({ theme }) => theme.transitions.changeTheme};
 `;
 
 const Content = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 88px 0 ${({ theme }) => theme.sizes.padding.lite};
+  padding: ${({ clearTopPadding }) => (clearTopPadding ? 0 : 88)}px 0
+    ${({ theme }) => theme.sizes.padding.lite};
   grid-area: content;
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  transition: color 0.3s, background-color 0.3s;
+  transition: ${({ theme }) => theme.transitions.changeTheme};
 `;
 
 const ContentWrapper = styled.div`
@@ -47,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: color 0.3s, background-color 0.3s;
+    transition: ${({ theme }) => theme.transitions.changeTheme};
     
     ${({ theme }) => `
         color: ${theme.colors.primaryFontColor};
@@ -60,7 +61,13 @@ const THEMES = {
   DARK: "darkTheme",
 };
 
-const Layout = ({ title, searchTerm, searchTermSetter, children }) => {
+const Layout = ({
+  title,
+  searchTerm,
+  searchTermSetter,
+  removeTopPadding,
+  children,
+}) => {
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.getItem("theme")
   );
@@ -96,8 +103,10 @@ const Layout = ({ title, searchTerm, searchTermSetter, children }) => {
       <GlobalStyle />
       <Wrapper>
         <SideMenu />
-        <Content>
-          <Search value={searchTerm} setter={searchTermSetter} />
+        <Content clearTopPadding={removeTopPadding}>
+          {searchTermSetter !== undefined && (
+            <Search value={searchTerm} setter={searchTermSetter} />
+          )}
           <ContentWrapper>
             <Title>{title}</Title>
             <button onClick={() => setCurrentTheme(handleSetTheme())}>
@@ -114,9 +123,16 @@ const Layout = ({ title, searchTerm, searchTermSetter, children }) => {
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  searchTerm: PropTypes.string.isRequired,
-  searchTermSetter: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string,
+  searchTermSetter: PropTypes.func,
   children: PropTypes.node.isRequired,
+  removeTopPadding: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+  searchTerm: null,
+  searchTermSetter: undefined,
+  removeTopPadding: false,
 };
 
 export default Layout;

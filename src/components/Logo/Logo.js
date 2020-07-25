@@ -8,6 +8,7 @@ const LogoContainer = styled.div`
 
   p {
     color: ${({ theme }) => theme.colors.primaryFontColor};
+    transition: ${({ theme }) => theme.transitions.changeTheme};
     padding: 0;
     margin: 0;
   }
@@ -19,6 +20,7 @@ const LogoContainer = styled.div`
 
   span {
     color: ${({ theme }) => theme.colors.activeFontColor};
+    transition: ${({ theme }) => theme.transitions.changeTheme};
   }
 `;
 

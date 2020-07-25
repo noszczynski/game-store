@@ -42,7 +42,7 @@ const MenuItem = ({ item: { label, link, icon } }) => {
     <Wrapper>
       <StyledNavLink to={link} activeClassName={"current"}>
         <WrapperInner>
-          <div>{icon}</div>
+          {icon}
           <Label>{label}</Label>
         </WrapperInner>
       </StyledNavLink>

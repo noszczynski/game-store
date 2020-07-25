@@ -15,7 +15,7 @@ const Aside = styled.aside`
   left: 0;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
-  transition: color 0.3s, background-color 0.3s;
+  transition: ${({ theme }) => theme.transitions.changeTheme};
 `;
 
 const SideMenu = () => {

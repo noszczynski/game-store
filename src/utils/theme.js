@@ -1,5 +1,5 @@
 import colors from "./colors";
-import { rounded, shadows } from "./variables";
+import { rounded, shadows, transitions } from "./variables";
 import { fonts } from "./fonts";
 import sizes from "./sizes";
 import { device } from "./breakpoints";
@@ -9,6 +9,7 @@ const rest = {
   sizes: sizes,
   rounded: rounded,
   breakpoints: device,
+  transitions,
 };
 
 const lightTheme = {

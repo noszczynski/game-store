@@ -13,7 +13,8 @@ const TitlePrimary = styled.div`
   padding: ${({ theme }) => theme.sizes.padding.lite} 0 0;
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   color: ${({ theme }) => theme.colors.primaryFontColor};
-  transition: transform 0.3s ease, color 0.3s, background-color 0.3s;
+  transition: transform 0.3s ease,
+    ${({ theme }) => theme.transitions.changeTheme};
   font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
 `;
 
@@ -23,7 +24,8 @@ const TitleSecondary = styled.div`
   background-color: rgba(0, 0, 0, 0.3); // TODO to variable
   color: ${({ theme }) => theme.colors.light};
   transform: translateY(100%);
-  transition: transform 0.3s ease, color 0.3s, background-color 0.3s;
+  transition: transform 0.3s ease,
+    ${({ theme }) => theme.transitions.changeTheme};
 `;
 
 export { TitlePrimary, TitleSecondary };

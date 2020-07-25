@@ -14,4 +14,8 @@ const rounded = {
   second: `50%`,
 };
 
-export { shadows, rounded };
+const transitions = {
+  changeTheme: "color 0.3s, background-color 0.3s",
+};
+
+export { shadows, rounded, transitions };
