@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
-import { filterArrayByFields } from "../utils/utils";
 import { getGames } from "../api/api";
 import GameBox from "../components/GameBoxes/variants/GameBox";
 
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
 function Games() {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getGames().then((data) => {
@@ -23,27 +21,11 @@ function Games() {
     });
   }, []);
 
-  useEffect(() => {
-    setFilteredGames(
-      searchTerm.length
-        ? filterArrayByFields(searchTerm, games, ["Keywords"])
-        : games
-    );
-  }, [games, searchTerm]);
-
   return (
-    <Layout
-      title={"Games"}
-      searchTerm={searchTerm}
-      searchTermSetter={setSearchTerm}
-    >
+    <Layout title={"Games"} data={games} setFilteredData={setFilteredGames}>
       <Wrapper>
         {filteredGames.map((game, index) => (
-          <GameBox
-            game={game}
-            variant={index % 2 === 0 ? "primary" : "secondary"}
-            key={index}
-          />
+          <GameBox game={game} variant={"secondary"} key={index} />
         ))}
       </Wrapper>
     </Layout>

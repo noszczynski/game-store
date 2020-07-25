@@ -1,19 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Search as SearchIcon } from "@material-ui/icons";
 import styled from "styled-components";
 import Input from "../Input/Input";
 import PropTypes from "prop-types";
+import { filterArrayByFields } from "../../utils/utils";
 
 const Wrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: calc(250px + 1rem);
-  z-index: 100;
-  padding: ${({ theme }) => `1.5rem ${theme.sizes.padding.lite} 1.5rem 0`};
-  background-color: ${({ theme }) => theme.colors.transparent};
-`;
-
-const WrapperInner = styled.div`
   padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
   display: flex;
   justify-content: space-between;
@@ -36,24 +28,32 @@ const Icon = styled(SearchIcon)`
   color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
-const Search = ({ value, setter }) => {
+const Search = ({ items, setter }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    setter(
+      searchTerm.length
+        ? filterArrayByFields(searchTerm, items, ["Keywords"])
+        : items
+    );
+  }, [items, searchTerm, setter]);
+
   return (
     <Wrapper>
-      <WrapperInner>
-        <Icon />
-        <SearchInput
-          type={"text"}
-          placeholder={"search..."}
-          value={value}
-          onChange={({ target: { value } }) => setter(value)}
-        />
-      </WrapperInner>
+      <Icon />
+      <SearchInput
+        type={"text"}
+        placeholder={"search..."}
+        value={searchTerm}
+        onChange={({ target: { value } }) => setSearchTerm(value)}
+      />
     </Wrapper>
   );
 };
 
 Search.propTypes = {
-  value: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   setter: PropTypes.func.isRequired,
 };
 

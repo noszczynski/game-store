@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SideMenu from "../SideMenu/SideMenu";
 import styled, { ThemeProvider } from "styled-components";
-import Search from "../Search/Search";
 
 import { createGlobalStyle } from "styled-components";
 import { darkTheme, lightTheme } from "../../utils/theme";
+import TopBar from "./TopBar";
 
 const Wrapper = styled.section`
   height: 100vh;
@@ -63,8 +63,8 @@ const THEMES = {
 
 const Layout = ({
   title,
-  searchTerm,
-  searchTermSetter,
+  data,
+  setFilteredData,
   removeTopPadding,
   children,
 }) => {
@@ -89,7 +89,6 @@ const Layout = ({
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
-    console.log(theme);
     localStorage.setItem("theme", theme ? theme : THEMES.LIGHT);
     setCurrentTheme(theme ? theme : THEMES.LIGHT);
   }, []);
@@ -104,14 +103,13 @@ const Layout = ({
       <Wrapper>
         <SideMenu />
         <Content clearTopPadding={removeTopPadding}>
-          {searchTermSetter !== undefined && (
-            <Search value={searchTerm} setter={searchTermSetter} />
-          )}
+          <TopBar
+            items={data}
+            setter={setFilteredData}
+            setTheme={() => setCurrentTheme(handleSetTheme())}
+          />
           <ContentWrapper>
             <Title>{title}</Title>
-            <button onClick={() => setCurrentTheme(handleSetTheme())}>
-              current theme is {currentTheme}
-            </button>
             <main>{children}</main>
             <footer>© {new Date().getFullYear()}</footer>
           </ContentWrapper>
@@ -123,15 +121,15 @@ const Layout = ({
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  searchTerm: PropTypes.string,
-  searchTermSetter: PropTypes.func,
+  data: PropTypes.string,
+  setFilteredData: PropTypes.func,
   children: PropTypes.node.isRequired,
   removeTopPadding: PropTypes.bool,
 };
 
 Layout.defaultProps = {
-  searchTerm: null,
-  searchTermSetter: undefined,
+  data: null,
+  setFilteredData: undefined,
   removeTopPadding: false,
 };
 
