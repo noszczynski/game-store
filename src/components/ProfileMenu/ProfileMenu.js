@@ -4,6 +4,7 @@ import { getLocalUser } from "../../utils/utils";
 import { apiUrl } from "../../api/api";
 import logout from "../../api/logout";
 import { Link } from "react-router-dom";
+import ResetButton from "../Reset/ResetButton";
 
 const Wrapper = styled.section`
   display: flex;
@@ -68,18 +69,15 @@ const List = styled.ul`
   min-height: 80px;
   color: inherit;
 
-  button {
-    border: 0;
-    background-color: ${({ theme }) => theme.colors.transparent};
-    color: inherit;
-    padding: 0;
-    cursor: pointer;
-  }
-
   a {
     text-decoration: none;
     color: inherit;
   }
+`;
+
+const Button = styled(ResetButton)`
+  color: inherit;
+  padding: 0;
 `;
 
 const ListItem = styled.li`
@@ -128,9 +126,9 @@ const ProfileMenu = () => {
         <>
           <Label>{user.username}</Label>
           <Photo>
-            <button onClick={() => setMenuVisibility(!menuVisibility)}>
+            <Button onClick={() => setMenuVisibility(!menuVisibility)}>
               <img src={`${apiUrl}${user.picture.url}`} alt={"profile"} />
-            </button>
+            </Button>
           </Photo>
           <Menu show={menuVisibility}>
             <List>
@@ -141,9 +139,9 @@ const ProfileMenu = () => {
                   </Link>
                 ) : (
                   action && (
-                    <button onClick={action} key={label}>
+                    <Button onClick={action} key={label}>
                       <ListItem title={title}>{label}</ListItem>
-                    </button>
+                    </Button>
                   )
                 );
               })}

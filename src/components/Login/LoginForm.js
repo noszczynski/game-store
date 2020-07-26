@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { authUser } from "../../api/api";
+import ResetButton from "../Reset/ResetButton";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,12 +18,6 @@ const Wrapper = styled.div`
 `;
 
 const LoginInput = styled.input``;
-
-const LoginButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
-  color: ${({ theme }) => theme.colors.primaryFontColor};
-  border: 0;
-`;
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -67,8 +62,8 @@ const LoginForm = () => {
       />
       <label htmlFor={"rememberMe"}>Remember me</label>
       <input type={"checkbox"} name={"rememberMe"} />
-      <LoginButton onClick={submit}>Login</LoginButton>
-      <LoginButton onClick={submitAsGuest}>Login as guest</LoginButton>
+      <ResetButton onClick={submit}>Login</ResetButton>
+      <ResetButton onClick={submitAsGuest}>Login as guest</ResetButton>
     </Wrapper>
   );
 };

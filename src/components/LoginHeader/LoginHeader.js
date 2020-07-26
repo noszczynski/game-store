@@ -5,6 +5,7 @@ import { Person } from "@material-ui/icons";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import { VIEWS } from "../../views/LoginPanel";
 import PropTypes from "prop-types";
+import ResetButton from "../Reset/ResetButton";
 
 const Wrapper = styled.div`
   display: flex;
@@ -56,17 +57,13 @@ const ListItem = styled.li`
   &.active::after {
     background-color: ${({ theme }) => theme.colors.activeFontColor};
   }
+`;
 
-  button {
-    border: 0;
-    background-color: ${({ theme }) => theme.colors.transparent};
-    color: ${({ theme }) => theme.colors.primaryFontColor};
-    font-weight: ${({ theme }) => theme.sizes.fontWeight.bold};
-    text-transform: uppercase;
-    padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
-    font-size: ${({ theme }) => theme.sizes.fonts.menu};
-    cursor: pointer;
-  }
+const Button = styled(ResetButton)`
+  font-weight: ${({ theme }) => theme.sizes.fontWeight.bold};
+  text-transform: uppercase;
+  padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
+  font-size: ${({ theme }) => theme.sizes.fonts.menu};
 `;
 
 const LoginHeader = ({ setTheme, setView }) => {
@@ -76,13 +73,13 @@ const LoginHeader = ({ setTheme, setView }) => {
       <div>
         <List>
           <ListItem>
-            <button onClick={() => setView(VIEWS.LOGIN)}>log in</button>{" "}
+            <Button onClick={() => setView(VIEWS.LOGIN)}>log in</Button>{" "}
           </ListItem>
           <ListItem>
-            <button onClick={() => setView(VIEWS.LOGIN)}>news</button>
+            <Button onClick={() => setView(VIEWS.LOGIN)}>news</Button>
           </ListItem>
           <ListItem>
-            <button onClick={() => setView(VIEWS.LOGIN)}>games</button>
+            <Button onClick={() => setView(VIEWS.LOGIN)}>games</Button>
           </ListItem>
         </List>
       </div>
