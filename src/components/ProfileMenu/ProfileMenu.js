@@ -20,8 +20,8 @@ const Label = styled.h6`
 `;
 
 const Photo = styled.div`
-  height: 45px;
-  width: 45px;
+  height: 51px;
+  width: 51px;
   margin-left: 1rem;
 
   button {
@@ -136,12 +136,12 @@ const ProfileMenu = () => {
             <List>
               {LIST_ITEMS.map(({ label, title, link, action }) => {
                 return link ? (
-                  <Link to={link}>
+                  <Link to={link} key={label}>
                     <ListItem title={title}>{label}</ListItem>
                   </Link>
                 ) : (
                   action && (
-                    <button onClick={action}>
+                    <button onClick={action} key={label}>
                       <ListItem title={title}>{label}</ListItem>
                     </button>
                   )

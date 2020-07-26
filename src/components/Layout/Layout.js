@@ -15,10 +15,10 @@ const Wrapper = styled.section`
 const Title = styled.section`
   margin: ${({ theme }) => theme.sizes.margin.standard} 0;
   color: ${({ theme }) => theme.colors.primaryFontColor};
-  text-transform: capitalize;
   font-weight: ${({ theme }) => theme.sizes.fontWeight.bold};
   font-size: ${({ theme }) => theme.sizes.fonts.pageTitle};
   transition: ${({ theme }) => theme.transitions.changeTheme};
+  text-transform: capitalize;
 `;
 
 const Content = styled.section`
@@ -32,7 +32,7 @@ const Content = styled.section`
 `;
 
 const ContentWrapper = styled.div`
-  padding: 0 ${({ theme }) => theme.sizes.padding.lite};
+  padding: 0 ${({ theme }) => theme.sizes.padding.standard};
 `;
 
 const Layout = ({

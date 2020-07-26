@@ -17,7 +17,6 @@ const Text = styled.input`
   :focus,
   :active {
     outline-width: 0;
-    background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
   }
 `;
 

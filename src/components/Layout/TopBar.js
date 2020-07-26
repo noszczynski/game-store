@@ -22,6 +22,12 @@ const RightWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: ${({ theme }) => theme.colors.searchBar};
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.searchBar} 0%,
+    ${({ theme }) => theme.colors.searchBarOpacity} 100%
+  );
 `;
 
 const TopBar = ({ items, setter, setTheme }) => {
