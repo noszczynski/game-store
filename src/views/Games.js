@@ -19,7 +19,6 @@ function Games() {
       <GapWrapper
         columns={"repeat(auto-fill, minmax(320px, 1fr))"}
         rows={"240px"}
-        gap={({ theme }) => theme.sizes.padding.lite}
       >
         {filteredGames.map((game, index) => (
           <GameBox game={game} variant={"secondary"} key={index} />
