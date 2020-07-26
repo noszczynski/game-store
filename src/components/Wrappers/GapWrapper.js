@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
-// render container with padding among items
+// DESC
+// Render container with padding among columns and rows
 
-// columns [Number] or columns [Array[Strings]]
+// PROPS
+// columns [Number] or [Array[Strings]] or [String]
 // rows [String] or rows [Array[Strings]]
 // gap [String]
 // width [String]
 
+// USAGE
 // <GapWrapper columns={["200px", "10px", "1fr"]} rows={'100px'} gap={"3rem"} width={'100%'}>
 
 const GapWrapper = styled.div`
@@ -20,7 +23,7 @@ const GapWrapper = styled.div`
         case "number":
           return `${"auto ".repeat(columns)}`;
         case "string":
-          return `${"auto ".repeat(Number(columns))}`;
+          return columns;
         default:
           return "auto auto";
       }
