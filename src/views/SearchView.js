@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
-
-const Wrapper = styled.div`
-  display: grid;
-  gap: ${({ theme }) => theme.sizes.padding.standard};
-  grid-template-columns: 1fr;
-  grid-auto-rows: 200px; // TODO
-`;
+import GapWrapper from "../components/Wrappers/GapWrapper";
 
 const SearchedItem = styled.article`
   display: flex;
@@ -24,14 +18,18 @@ const SearchVIew = () => {
       searchTerm={searchTerm}
       searchTermSetter={setSearchTerm}
     >
-      <Wrapper>
+      <GapWrapper
+        items={3}
+        gap={({ theme }) => theme.sizes.padding.lite}
+        rows={["60px", "120px"]}
+      >
         <SearchedItem>search result mock</SearchedItem>
         <SearchedItem>search result mock</SearchedItem>
         <SearchedItem>search result mock</SearchedItem>
         <SearchedItem>search result mock</SearchedItem>
         <SearchedItem>search result mock</SearchedItem>
         <SearchedItem>search result mock</SearchedItem>
-      </Wrapper>
+      </GapWrapper>
     </Layout>
   );
 };
