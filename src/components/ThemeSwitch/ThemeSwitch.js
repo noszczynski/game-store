@@ -8,6 +8,7 @@ const ThemeButton = styled.button`
   border: 0;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  margin-right: ${({ theme }) => theme.sizes.margin.lite};
 
   svg {
     color: ${({ theme }) => theme.colors.primaryFontColor};

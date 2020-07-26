@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Search from "../Search/Search";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
-import logout from "../../api/logout";
 
 const Wrapper = styled.section`
   display: flex;
@@ -23,7 +22,6 @@ const RightWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 170px;
 `;
 
 const TopBar = ({ items, setter, setTheme }) => {
@@ -35,7 +33,6 @@ const TopBar = ({ items, setter, setTheme }) => {
         <div />
       )}
       <RightWrapper>
-        <button onClick={logout}>logout</button>
         <ThemeSwitch setTheme={setTheme} />
         <ProfileMenu />
       </RightWrapper>

@@ -11,6 +11,8 @@ const sizes = {
     strong: "4rem",
   },
   fonts: {
+    profileSubmenu: "16px",
+    userNameLabel: "14px",
     menu: "1.2rem",
     pageTitle: "1.8rem",
   },

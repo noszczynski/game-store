@@ -18,11 +18,11 @@ const ProfileForm = styled.div`
 
 const Profile = () => {
   const initialState = {
+    username: "",
     name: "",
     lastName: "",
     picture: "",
     email: "",
-    nickname: "",
     password: "",
   };
   const [data, dispatch] = useReducer(reducer, initialState);
@@ -63,10 +63,10 @@ const Profile = () => {
           />
           <Input
             type={"text"}
-            name={FIELD_NAMES.NICKNAME}
-            value={data.nickname}
-            placeholder={"nickname"}
-            label={"Nickname"}
+            name={FIELD_NAMES.USERNAME}
+            value={data.username}
+            placeholder={"name"}
+            label={"User name"}
             onChange={({ target }) =>
               dispatch({ type: PROFILE_ACTION_TYPES.CHANGE, target })
             }
