@@ -32,7 +32,9 @@ const Content = styled.section`
 `;
 
 const ContentWrapper = styled.div`
-  padding: 0 ${({ theme }) => theme.sizes.padding.standard};
+  padding: 0
+    ${({ theme, removeSidePadding }) =>
+      removeSidePadding ? "0" : theme.sizes.padding.standard};
 `;
 
 const Layout = ({
@@ -40,6 +42,7 @@ const Layout = ({
   data,
   setFilteredData,
   removeTopPadding,
+  removeSidePadding,
   setTheme,
   children,
 }) => {
@@ -48,8 +51,8 @@ const Layout = ({
       <SideMenu />
       <Content clearTopPadding={removeTopPadding}>
         <TopBar items={data} setter={setFilteredData} setTheme={setTheme} />
-        <ContentWrapper>
-          <Title>{title}</Title>
+        <ContentWrapper removeSidePadding>
+          {title && <Title>{title}</Title>}
           <main>{children}</main>
           <footer>© {new Date().getFullYear()}</footer>
         </ContentWrapper>
@@ -59,18 +62,21 @@ const Layout = ({
 };
 
 Layout.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.object),
   setFilteredData: PropTypes.func,
   setTheme: PropTypes.func,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   removeTopPadding: PropTypes.bool,
+  removeSidePadding: PropTypes.bool,
 };
 
 Layout.defaultProps = {
+  title: "",
   data: null,
   setFilteredData: undefined,
   removeTopPadding: false,
+  removeSidePadding: false,
 };
 
 export default ThemeProviderWrapper(Layout);

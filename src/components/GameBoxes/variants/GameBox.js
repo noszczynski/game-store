@@ -22,7 +22,7 @@ const GameBox = ({ game, variant }) => {
   };
 
   return (
-    <Link href={"/"}>
+    <Link href={`/games/${game.id}`}>
       <Wrapper>
         <Cover src={coverPhoto} alt={"game-img"} />
         {getVariant()}
