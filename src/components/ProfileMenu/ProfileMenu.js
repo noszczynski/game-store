@@ -127,7 +127,14 @@ const ProfileMenu = () => {
           <Label>{user.username}</Label>
           <Photo>
             <Button onClick={() => setMenuVisibility(!menuVisibility)}>
-              <img src={`${apiUrl}${user.picture.url}`} alt={"profile"} />
+              <img
+                src={
+                  user && user.picture
+                    ? `${apiUrl}${user.picture.url}`
+                    : "https://i.stack.imgur.com/l60Hf.png"
+                }
+                alt={"profile"}
+              />
             </Button>
           </Photo>
           <Menu show={menuVisibility}>

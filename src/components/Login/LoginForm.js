@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { authUser } from "../../api/api";
@@ -43,22 +43,19 @@ const LoginForm = () => {
     login("guest@guest.com", "password");
   };
 
-  useEffect(() => {
-    setEmail("adam.noszczynski@gmail.com");
-    setPassword("password");
-  }, []);
-
   return (
     <Wrapper>
       <LoginInput
         type={"text"}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        placeholder={"login"}
       />
       <LoginInput
         type={"text"}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        placeholder={"password"}
       />
       <label htmlFor={"rememberMe"}>Remember me</label>
       <input type={"checkbox"} name={"rememberMe"} />
