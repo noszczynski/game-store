@@ -6,7 +6,7 @@ export const FIELD_NAMES = {
   NAME: "name",
   LAST_NAME: "lastName",
   EMAIL: "email",
-  NICKNAME: "nickname",
+  USERNAME: "username",
   PASSWORD: "password",
 };
 
@@ -29,8 +29,8 @@ export const reducer = (state, action) => {
         case FIELD_NAMES.EMAIL: {
           return { ...state, email: value };
         }
-        case FIELD_NAMES.NICKNAME: {
-          return { ...state, nickname: value };
+        case FIELD_NAMES.USERNAME: {
+          return { ...state, username: value };
         }
         case FIELD_NAMES.PASSWORD: {
           return { ...state, password: value };

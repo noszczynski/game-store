@@ -30,6 +30,8 @@ const colors = {
     primaryBackgroundColor: "#fdfdfd",
     secondaryBackgroundColor: "#f4f4f4",
     searchBar: "rgba(255,255,255,0.75)",
+    searchBarOpacity: "rgba(255,255,255,0)",
+    profileSubmenu: "rgba(255,255,255,0.75)",
     activeFontColor: rest.violet,
   },
   darkTheme: {
@@ -40,6 +42,8 @@ const colors = {
     primaryBackgroundColor: "#000",
     secondaryBackgroundColor: "#0C0D0D",
     searchBar: "rgba(0,0,0,0.75)",
+    searchBarOpacity: "rgba(0,0,0,0)",
+    profileSubmenu: "rgba(0,0,0,0.75)",
     activeFontColor: rest.red,
   },
 };
