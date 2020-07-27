@@ -1,53 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Search as SearchIcon } from "@material-ui/icons";
 import styled from "styled-components";
-import sizes from "../../utils/sizes";
-import colors from "../../utils/colors";
 import Input from "../Input/Input";
 import PropTypes from "prop-types";
+import { filterArrayByFields } from "../../utils/utils";
 
 const Wrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 281px;
-  z-index: 100;
-  width: 100%;
-  padding: ${sizes.padding.standard} ${sizes.padding.lite};
-  background-color: ${colors.gray100};
-`;
-
-const WrapperInner = styled.div`
-  padding: 0.5rem ${sizes.padding.lite};
+  padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  background-color: ${colors.searchBar.light};
+  background-color: ${({ theme }) => theme.colors.searchBar};
+`;
+
+const SearchInput = styled(Input)`
+  background-color: ${({ theme }) => theme.colors.transparent};
+  color: ${({ theme }) => theme.colors.primaryFontColor};
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.primaryFontColor};
+  }
 `;
 
 const Icon = styled(SearchIcon)`
   font-size: 2rem !important;
-  color: ${colors.gray300};
+  color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
-const Search = ({ value, setter }) => {
+const Search = ({ items, setter }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    setter(
+      searchTerm.length
+        ? filterArrayByFields(searchTerm, items, ["Keywords"])
+        : items
+    );
+  }, [items, searchTerm, setter]);
+
   return (
     <Wrapper>
-      <WrapperInner>
-        <Icon />
-        <Input
-          type={"text"}
-          placeholder={"Search for games"}
-          value={value}
-          onChange={({ target: { value } }) => setter(value)}
-        />
-      </WrapperInner>
+      <Icon />
+      <SearchInput
+        type={"text"}
+        placeholder={"search..."}
+        value={searchTerm}
+        onChange={({ target: { value } }) => setSearchTerm(value)}
+      />
     </Wrapper>
   );
 };
 
 Search.propTypes = {
-  value: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   setter: PropTypes.func.isRequired,
 };
 

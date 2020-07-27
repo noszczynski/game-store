@@ -1,12 +1,21 @@
 import colors from "./colors";
 
 const shadows = {
-  first: `0 20px 50px ${colors.transparentDark}`,
+  lightTheme: {
+    first: `0 20px 50px ${colors.transparentDark}`,
+  },
+  darkTheme: {
+    first: `0 20px 50px ${colors.transparentDark}`,
+  },
 };
 
 const rounded = {
   first: `20px`,
-  secound: `50%`,
+  second: `50%`,
 };
 
-export { shadows, rounded };
+const transitions = {
+  changeTheme: "color 0.3s, background-color 0.3s",
+};
+
+export { shadows, rounded, transitions };

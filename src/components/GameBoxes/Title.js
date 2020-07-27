@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import sizes from "../../utils/sizes";
-import colors from "../../utils/colors";
 
 const common = `
   position: absolute;
@@ -12,20 +10,22 @@ const common = `
 
 const TitlePrimary = styled.div`
   ${common};
-  padding: ${sizes.padding.lite} 0 0;
-  background-color: ${colors.gray100};
-  color: ${colors.dark};
-  transition: transform 0.3s ease;
-  font-weight: 500;
+  padding: ${({ theme }) => theme.sizes.padding.lite} 0 0;
+  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  color: ${({ theme }) => theme.colors.primaryFontColor};
+  transition: transform 0.3s ease,
+    ${({ theme }) => theme.transitions.changeTheme};
+  font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
 `;
 
 const TitleSecondary = styled.div`
   ${common};
-  padding: 0.5rem ${sizes.padding.lite};
+  padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
   background-color: rgba(0, 0, 0, 0.3); // TODO to variable
-  color: ${colors.light};
+  color: ${({ theme }) => theme.colors.light};
   transform: translateY(100%);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease,
+    ${({ theme }) => theme.transitions.changeTheme};
 `;
 
 export { TitlePrimary, TitleSecondary };

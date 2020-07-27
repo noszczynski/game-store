@@ -1,5 +1,5 @@
-const colors = {
-  light: "#FFFFFF",
+const rest = {
+  light: "#fff",
   gray100: "#fdfdfd", // background-light-theme
   gray300: "#90929A",
   gray700: "#171818",
@@ -9,14 +9,6 @@ const colors = {
   red: "#D30040",
   transparentDark: "rgba(0,0,0,0.05)",
   transparent: "rgba(0,0,0,0)",
-  background: {
-    light: "#fdfdfd",
-    dark: "",
-  },
-  searchBar: {
-    light: "#f5f5f5",
-    dark: "",
-  },
   fonts: {
     gray: {
       light: "#9f9ea3",
@@ -26,6 +18,29 @@ const colors = {
       light: "#080808",
       dark: "#ffffff",
     },
+  },
+};
+
+const colors = {
+  lightTheme: {
+    ...rest,
+    primaryFontColor: "#1a1a1a",
+    secondaryFontColor: "#3a3a3a",
+    tertiaryFontColor: "#fdfdfd",
+    primaryBackgroundColor: "#fdfdfd",
+    secondaryBackgroundColor: "#f4f4f4",
+    searchBar: "rgba(255,255,255,0.75)",
+    activeFontColor: rest.violet,
+  },
+  darkTheme: {
+    ...rest,
+    primaryFontColor: "#fff",
+    secondaryFontColor: "#a77de0",
+    tertiaryFontColor: "#0C0D0D",
+    primaryBackgroundColor: "#000",
+    secondaryBackgroundColor: "#0C0D0D",
+    searchBar: "rgba(0,0,0,0.75)",
+    activeFontColor: rest.red,
   },
 };
 
