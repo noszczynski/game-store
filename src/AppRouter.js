@@ -9,6 +9,7 @@ import Games from "./views/Games";
 import SearchView from "./views/SearchView";
 import Profile from "./views/Profile";
 import LoginPanel from "./views/LoginPanel";
+import Game from "./components/Game";
 
 const AppRouter = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
@@ -27,6 +28,9 @@ const AppRouter = () => {
           <>
             <Route exact path="/games">
               <Games />
+            </Route>
+            <Route exact path="/games/:id">
+              <Game />
             </Route>
             <Route exact path="/search">
               <SearchView />

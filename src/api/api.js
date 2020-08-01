@@ -36,6 +36,11 @@ const getUsers = async () => {
   return result.data;
 };
 
+const getGame = async (id) => {
+  const result = await axios.get(`${api.games}/${id}`, getAuthHeaders());
+  return result.data;
+};
+
 const authUser = async (email, password) => {
   const result = await axios.post(api.auth, {
     identifier: email,
@@ -44,4 +49,4 @@ const authUser = async (email, password) => {
   return result.data;
 };
 
-export { apiUrl, api, getGames, getUsers, authUser };
+export { apiUrl, api, getGames, getGame, getUsers, authUser };
