@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import GapWrapper from "../components/Wrappers/GapWrapper";
+import { getSiteData, PAGES } from "../api/api";
 
 const SearchedItem = styled.article`
   display: flex;
@@ -11,10 +12,17 @@ const SearchedItem = styled.article`
 
 const SearchVIew = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [siteData, setSiteData] = useState(null);
+
+  useEffect(() => {
+    getSiteData(PAGES.SEARCH).then(({ searchPage }) => {
+      setSiteData(searchPage);
+    });
+  }, []);
 
   return (
     <Layout
-      title={"Search"}
+      site={siteData}
       searchTerm={searchTerm}
       searchTermSetter={setSearchTerm}
     >

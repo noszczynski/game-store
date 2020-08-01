@@ -2,6 +2,12 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:1337";
 
+const PAGES = {
+  GAMES: apiUrl + "/games-page",
+  SEARCH: apiUrl + "/search-page",
+  PROFILE: apiUrl + "/profile-page",
+};
+
 const api = {
   games: apiUrl + "/games",
   users: apiUrl + "/users",
@@ -24,6 +30,11 @@ const getAuthHeaders = (data) => {
       Authorization: `Bearer ${getToken()}`,
     },
   };
+};
+
+const getSiteData = async (url) => {
+  const result = await axios.get(url);
+  return result.data;
 };
 
 const getGames = async () => {
@@ -49,4 +60,13 @@ const authUser = async (email, password) => {
   return result.data;
 };
 
-export { apiUrl, api, getGames, getGame, getUsers, authUser };
+export {
+  apiUrl,
+  api,
+  PAGES,
+  getGames,
+  getGame,
+  getUsers,
+  authUser,
+  getSiteData,
+};
