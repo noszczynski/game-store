@@ -21,6 +21,14 @@ const GlobalStyle = createGlobalStyle`
         color: ${theme.colors.primaryFontColor};
         background-color: ${theme.colors.primaryBackgroundColor};
       `}
+    }
+    
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 `;
 
 const THEMES = {

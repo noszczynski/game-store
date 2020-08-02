@@ -17,11 +17,11 @@ const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        {user && <Redirect from={"/login"} to={"/games"} />}
+        {user && <Redirect from={"/start"} to={"/games"} />}
         <Route exact path="/">
           <Redirect to={"/games"} />
         </Route>
-        <Route exact path="/login">
+        <Route exact path="/start">
           <LoginPanel />
         </Route>
         {user ? (
@@ -40,7 +40,7 @@ const AppRouter = () => {
             </Route>
           </>
         ) : (
-          <Redirect to={"/login"} />
+          <Redirect to={"/start"} />
         )}
       </Switch>
     </Router>

@@ -51,7 +51,7 @@ Layout.propTypes = {
   site: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    cover: PropTypes.string,
+    cover: PropTypes.object,
   }),
   data: PropTypes.arrayOf(PropTypes.object),
   setFilteredData: PropTypes.func,
@@ -65,7 +65,7 @@ Layout.defaultProps = {
   site: {
     title: "",
     description: "",
-    cover: "",
+    cover: null,
   },
   data: null,
   setFilteredData: undefined,

@@ -15,6 +15,7 @@ const sizes = {
     userNameLabel: "14px",
     menu: "1.2rem",
     pageTitle: "1.8rem",
+    premiereSpan: "18px",
   },
   fontWeight: {
     light: 300,

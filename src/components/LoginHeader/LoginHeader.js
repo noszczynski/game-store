@@ -72,14 +72,14 @@ const LoginHeader = ({ setTheme, setView }) => {
       <Logo />
       <div>
         <List>
+          {/*<ListItem>*/}
+          {/*  <Button onClick={() => setView(VIEWS.LOGIN)}>log in</Button>{" "}*/}
+          {/*</ListItem>*/}
           <ListItem>
-            <Button onClick={() => setView(VIEWS.LOGIN)}>log in</Button>{" "}
+            <Button onClick={() => setView(VIEWS.NEWS)}>news</Button>
           </ListItem>
           <ListItem>
-            <Button onClick={() => setView(VIEWS.LOGIN)}>news</Button>
-          </ListItem>
-          <ListItem>
-            <Button onClick={() => setView(VIEWS.LOGIN)}>games</Button>
+            <Button onClick={() => setView(VIEWS.GAMES)}>games</Button>
           </ListItem>
         </List>
       </div>

@@ -12,6 +12,7 @@ const api = {
   games: apiUrl + "/games",
   users: apiUrl + "/users",
   auth: apiUrl + "/auth/local",
+  premiere: apiUrl + "/welcome-news-page",
 };
 
 const getToken = () => {
@@ -52,6 +53,11 @@ const getGame = async (id) => {
   return result.data;
 };
 
+const getPremiereNews = async () => {
+  const result = await axios.get(api.premiere);
+  return result.data;
+};
+
 const authUser = async (email, password) => {
   const result = await axios.post(api.auth, {
     identifier: email,
@@ -69,4 +75,5 @@ export {
   getUsers,
   authUser,
   getSiteData,
+  getPremiereNews,
 };
