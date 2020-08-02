@@ -7,11 +7,23 @@ import ResetButton from "../Reset/ResetButton";
 import LoginInput from "./LoginInput";
 import { LOGIN_VIEWS } from "./Login";
 import PropTypes from "prop-types";
+import { authUser } from "../../api/api";
 
-const LoginForm = ({ login, title, view, setView }) => {
+const LoginForm = ({ title, setView }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRemember] = useState(true);
+
+  const login = (email, password, rememberMe) => {
+    authUser(email, password).then(({ jwt, user }) => {
+      window.sessionStorage.setItem("token", jwt);
+      sessionStorage.setItem("user", JSON.stringify(user));
+      if (rememberMe) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+      window.location.replace("/games");
+    });
+  };
 
   const submit = () => {
     login(email, password, rememberMe);
@@ -31,7 +43,7 @@ const LoginForm = ({ login, title, view, setView }) => {
         placeholder={"login or email"}
       />
       <LoginInput
-        type={"text"}
+        type={"password"}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder={"password"}
@@ -57,15 +69,7 @@ const LoginForm = ({ login, title, view, setView }) => {
         <Button onClick={submitAsGuest}>Login as guest</Button>
       </GapWrapper>
       <div>
-        <ResetButton
-          onClick={() =>
-            setView(
-              view === LOGIN_VIEWS.REGISTER
-                ? LOGIN_VIEWS.LOGIN
-                : LOGIN_VIEWS.REGISTER
-            )
-          }
-        >
+        <ResetButton onClick={() => setView(LOGIN_VIEWS.REGISTER)}>
           Register
         </ResetButton>
       </div>
@@ -74,9 +78,7 @@ const LoginForm = ({ login, title, view, setView }) => {
 };
 
 LoginForm.propTypes = {
-  login: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  view: PropTypes.string.isRequired,
   setView: PropTypes.func.isRequired,
 };
 

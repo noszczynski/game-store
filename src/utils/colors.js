@@ -33,6 +33,8 @@ const colors = {
     searchBarOpacity: "rgba(255,255,255,0)",
     profileSubmenu: "rgba(255,255,255,0.75)",
     activeFontColor: rest.violet,
+    loginPanel: rest.light,
+    startPageAfterBackground: "#1a1a1a",
   },
   darkTheme: {
     ...rest,
@@ -45,6 +47,8 @@ const colors = {
     searchBarOpacity: "rgba(0,0,0,0)",
     profileSubmenu: "rgba(0,0,0,0.75)",
     activeFontColor: rest.red,
+    loginPanel: "#1a1a1a",
+    startPageAfterBackground: "#000",
   },
 };
 

@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
+  background-color: ${({ theme }) => theme.colors.loginPanel};
 
   & > div {
     transition: transform 0.3s ease-in-out;
@@ -31,7 +31,7 @@ const WrapperInner = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  height: 360px;
+  height: ${({ isLogin }) => (isLogin ? 360 : 450)}px;
 `;
 
 const Cover = styled.div`
@@ -51,17 +51,6 @@ const Login = () => {
     login: "",
     register: "",
   });
-
-  const login = (email, password, rememberMe) => {
-    authUser(email, password).then(({ jwt, user }) => {
-      window.sessionStorage.setItem("token", jwt);
-      sessionStorage.setItem("user", JSON.stringify(user));
-      if (rememberMe) {
-        localStorage.setItem("user", JSON.stringify(user));
-      }
-      window.location.replace("/games");
-    });
-  };
 
   useEffect(() => {
     getLoginCovers().then(
@@ -88,16 +77,19 @@ const Login = () => {
               </Cover>
             ))
           : null}
-        <WrapperInner>
+        <WrapperInner isLogin={view === LOGIN_VIEWS.LOGIN}>
           {view === LOGIN_VIEWS.LOGIN ? (
             <LoginForm
-              login={login}
               title={titles ? titles.login : ""}
               view={view}
               setView={setView}
             />
           ) : (
-            <RegisterForm />
+            <RegisterForm
+              title={titles ? titles.register : ""}
+              view={view}
+              setView={setView}
+            />
           )}
         </WrapperInner>
         {covers && covers.registerCovers && covers.registerCovers.length > 0

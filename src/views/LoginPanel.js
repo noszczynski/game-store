@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 50%;
     z-index: -1;
-    background-color: ${({ theme }) => theme.colors.primaryFontColor};
+    background-color: ${({ theme }) => theme.colors.startPageAfterBackground};
   }
 `;
 
