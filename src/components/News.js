@@ -69,11 +69,6 @@ const AltSpan = styled.span`
   }
 `;
 
-const Tag = styled.div`
-  padding: 1rem;
-  text-transform: uppercase;
-`;
-
 const News = () => {
   const [premiereData, setPremiereData] = useState([]);
 
@@ -142,9 +137,6 @@ const News = () => {
           <Premiere game={premiereData[0]} />
           {renderPremiereDate(premiereData[0].premiereDate, VARIANT.VERTICAL)}
           <Premiere game={premiereData[1]} />
-          <div>
-            <Tag>GAMES</Tag>
-          </div>
           <div style={{ gridColumn: "3" }}>
             {renderPremiereDate(
               premiereData[1].premiereDate,

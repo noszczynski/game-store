@@ -1,55 +1,34 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { authUser } from "../../api/api";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import GapWrapper from "../Wrappers/GapWrapper";
+import Button from "../Button";
 import ResetButton from "../Reset/ResetButton";
+import LoginInput from "./LoginInput";
+import { LOGIN_VIEWS } from "./Login";
+import PropTypes from "prop-types";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: ${({ theme }) => theme.sizes.padding.lite};
-  width: 50%;
-  min-width: 600px;
-  margin: 0 auto;
-  background-color: ${({ theme }) => theme.colors.activeFontColor};
-  min-height: 50vh;
-`;
-
-const LoginInput = styled.input``;
-
-const LoginForm = () => {
+const LoginForm = ({ login, title, view, setView }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRemember] = useState(true);
 
-  const login = (email, password) => {
-    authUser(email, password).then(({ jwt, user }) => {
-      window.sessionStorage.setItem("token", jwt);
-      sessionStorage.setItem("user", JSON.stringify(user));
-      if (rememberMe) {
-        localStorage.setItem("user", JSON.stringify(user));
-      }
-      window.location.replace("/games");
-    });
-  };
-
   const submit = () => {
-    login(email, password);
+    login(email, password, rememberMe);
   };
 
   const submitAsGuest = () => {
-    login("guest@guest.com", "password");
+    login("guest@guest.com", "password", false);
   };
 
   return (
-    <Wrapper>
+    <>
+      <h2>{title}</h2>
       <LoginInput
         type={"text"}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder={"login"}
+        placeholder={"login or email"}
       />
       <LoginInput
         type={"text"}
@@ -57,16 +36,48 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder={"password"}
       />
-      <label htmlFor={"rememberMe"}>Remember me</label>
-      <input type={"checkbox"} name={"rememberMe"} />
-      <ResetButton onClick={submit}>Login</ResetButton>
-      <ResetButton onClick={submitAsGuest}>Login as guest</ResetButton>
-    </Wrapper>
+      <div>
+        <FormControlLabel
+          value="end"
+          control={
+            <Checkbox
+              color="primary"
+              value={rememberMe}
+              onChange={({ target: { checked } }) => setRemember(checked)}
+            />
+          }
+          label="Remember Me"
+          labelPlacement="end"
+        />
+      </div>
+      <GapWrapper>
+        <Button onClick={submit} active>
+          Login
+        </Button>
+        <Button onClick={submitAsGuest}>Login as guest</Button>
+      </GapWrapper>
+      <div>
+        <ResetButton
+          onClick={() =>
+            setView(
+              view === LOGIN_VIEWS.REGISTER
+                ? LOGIN_VIEWS.LOGIN
+                : LOGIN_VIEWS.REGISTER
+            )
+          }
+        >
+          Register
+        </ResetButton>
+      </div>
+    </>
   );
 };
 
 LoginForm.propTypes = {
-  setTheme: PropTypes.func,
+  login: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  view: PropTypes.string.isRequired,
+  setView: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -36,13 +36,13 @@ const ListItem = styled.li`
   ::after {
     content: "";
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 50%;
     opacity: 0;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.primaryFontColor};
-    width: 20%;
-    transform: translateY(100%) translateX(-50%);
+    width: 60%;
+    transform: translateY(50%) translateX(-50%);
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
 
@@ -60,10 +60,11 @@ const ListItem = styled.li`
 `;
 
 const Button = styled(ResetButton)`
-  font-weight: ${({ theme }) => theme.sizes.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
   text-transform: uppercase;
   padding: 0.5rem ${({ theme }) => theme.sizes.padding.lite};
   font-size: ${({ theme }) => theme.sizes.fonts.menu};
+  font-family: Roboto, serif;
 `;
 
 const LoginHeader = ({ setTheme, setView }) => {
@@ -72,9 +73,6 @@ const LoginHeader = ({ setTheme, setView }) => {
       <Logo />
       <div>
         <List>
-          {/*<ListItem>*/}
-          {/*  <Button onClick={() => setView(VIEWS.LOGIN)}>log in</Button>{" "}*/}
-          {/*</ListItem>*/}
           <ListItem>
             <Button onClick={() => setView(VIEWS.NEWS)}>news</Button>
           </ListItem>
@@ -86,7 +84,9 @@ const LoginHeader = ({ setTheme, setView }) => {
       <ActionWrapper>
         <ThemeSwitch setTheme={setTheme} />
         &nbsp;
-        <Person />
+        <ResetButton onClick={() => setView(VIEWS.LOGIN)}>
+          <Person />
+        </ResetButton>
       </ActionWrapper>
     </Wrapper>
   );

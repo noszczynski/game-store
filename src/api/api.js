@@ -13,6 +13,7 @@ const api = {
   users: apiUrl + "/users",
   auth: apiUrl + "/auth/local",
   premiere: apiUrl + "/welcome-news-page",
+  login: apiUrl + "/login-page",
 };
 
 const getToken = () => {
@@ -58,6 +59,11 @@ const getPremiereNews = async () => {
   return result.data;
 };
 
+const getLoginCovers = async () => {
+  const result = await axios.get(api.login);
+  return result.data;
+};
+
 const authUser = async (email, password) => {
   const result = await axios.post(api.auth, {
     identifier: email,
@@ -76,4 +82,5 @@ export {
   authUser,
   getSiteData,
   getPremiereNews,
+  getLoginCovers,
 };
