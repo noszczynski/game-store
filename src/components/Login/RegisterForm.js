@@ -11,11 +11,17 @@ import {
   REGISTER_FIELD_NAMES,
   REGISTER_INITIAL_STATE,
 } from "../../reducers/registerReducer";
+import MarginWrapper from "../Layout/MarginWrapper";
 
 const RegisterForm = ({ title, setView }) => {
   const [data, dispatch] = useReducer(reducer, REGISTER_INITIAL_STATE);
 
   const register = () => {};
+
+  const clear = () => dispatch({ type: REGISTER_ACTION_TYPES.RESET });
+
+  const change = ({ target }) =>
+    dispatch({ type: REGISTER_ACTION_TYPES.CHANGE, target });
 
   return (
     <>
@@ -25,45 +31,40 @@ const RegisterForm = ({ title, setView }) => {
         value={data.username}
         name={REGISTER_FIELD_NAMES.USERNAME}
         label={"Username"}
-        onChange={({ target }) =>
-          dispatch({ type: REGISTER_ACTION_TYPES.CHANGE, target })
-        }
+        onChange={change}
       />
       <LoginInput
         type={"email"}
         value={data.email}
         name={REGISTER_FIELD_NAMES.EMAIL}
         label={"Email address"}
-        onChange={({ target }) =>
-          dispatch({ type: REGISTER_ACTION_TYPES.CHANGE, target })
-        }
+        onChange={change}
       />
       <LoginInput
         type={"password"}
         value={data.password}
         name={REGISTER_FIELD_NAMES.PASSWORD}
         label={"Password"}
-        onChange={({ target }) =>
-          dispatch({ type: REGISTER_ACTION_TYPES.CHANGE, target })
-        }
+        onChange={change}
       />
       <LoginInput
         type={"password"}
         value={data.confirmPassword}
         name={REGISTER_FIELD_NAMES.CONFIRM_PASSWORD}
         label={"Confirm password"}
-        onChange={({ target }) =>
-          dispatch({ type: REGISTER_ACTION_TYPES.CHANGE, target })
-        }
+        onChange={change}
       />
-      <GapWrapper>
-        <Button onClick={register} active>
-          Register
-        </Button>
-      </GapWrapper>
+      <MarginWrapper>
+        <GapWrapper>
+          <Button onClick={register} active>
+            Register
+          </Button>
+          <Button onClick={clear}>Clear</Button>
+        </GapWrapper>
+      </MarginWrapper>
       <div>
         <p>
-          However, do you have an account? &nbsp;
+          However, do you have an account?&nbsp;
           <LinkButton onClick={() => setView(LOGIN_VIEWS.LOGIN)}>
             Come back to us
           </LinkButton>

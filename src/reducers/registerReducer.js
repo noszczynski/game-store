@@ -25,10 +25,6 @@ export const reducer = (state, action) => {
       const fieldName = target.getAttribute("name");
       const { value } = target;
 
-      console.log(target);
-      console.log(fieldName);
-      console.log(value);
-
       switch (fieldName) {
         case REGISTER_FIELD_NAMES.USERNAME: {
           return { ...state, username: value };
@@ -47,15 +43,13 @@ export const reducer = (state, action) => {
       }
     }
     case REGISTER_ACTION_TYPES.RESET: {
-      // const { username, email, password, confirmPassword } = state.defaultState;
-      // return {
-      //   ...state,
-      //   username: username,
-      //   email: email,
-      //   password: password,
-      //   confirmPassword: confirmPassword,
-      // };
-      return state;
+      return {
+        ...state,
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      };
     }
     default:
       return state;

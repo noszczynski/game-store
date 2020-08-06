@@ -1,6 +1,6 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-import PropTypes from "prop-types"
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   position: relative;
@@ -31,11 +31,15 @@ const Input = styled.input`
 `;
 
 const LoginInput = ({ label, name, value, ...props }) => {
-  const [focus, setFocus] = useState(null);
+  const [focus, setFocus] = useState(false);
 
   const handleFocus = (statement) => {
     setFocus(value ? true : statement);
   };
+
+  useEffect(() => {
+    setFocus(!!value);
+  }, [value]);
 
   return (
     <Wrapper>

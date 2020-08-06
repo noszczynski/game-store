@@ -10,6 +10,7 @@ const Button = styled(ResetButton)`
     ${({ theme }) => theme.sizes.padding.standard};
   color: ${({ theme, active }) =>
     active ? theme.colors.light : theme.colors.primaryFontColor};
+  margin: 2px 0;
 `;
 
 export default Button;
