@@ -40,13 +40,15 @@ const LoginForm = ({ title, setView }) => {
         type={"text"}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder={"login or email"}
+        name={"email"}
+        label={"Login or email"}
       />
       <LoginInput
         type={"password"}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder={"password"}
+        name={"email"}
+        label={"Password"}
       />
       <div>
         <FormControlLabel

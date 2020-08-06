@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { authUser, getLoginCovers } from "../../api/api";
+import { getLoginCovers } from "../../api/api";
 import { withHostAddress } from "../../utils/utils";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.loginPanel};
+  box-shadow: 0 0 20px -5px rgb(0 0 0 / 10%);
 
   & > div {
     transition: transform 0.3s ease-in-out;
