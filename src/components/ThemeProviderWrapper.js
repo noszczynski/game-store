@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { ThemeProvider } from "styled-components";
-import { createGlobalStyle } from "styled-components";
-import { darkTheme, lightTheme } from "../utils/theme";
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import { darkTheme, lightTheme } from "../utils/theme"
 
 const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
@@ -28,6 +27,22 @@ const GlobalStyle = createGlobalStyle`
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    p, span, button {
+      font-size: 14px;
+    }
+    
+    button {
+      font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
     }
 `;
 

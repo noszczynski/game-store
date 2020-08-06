@@ -12,6 +12,15 @@ export const FIELD_NAMES = {
   PASSWORD: "password",
 };
 
+export const PROFILE_INITIAL_STATE = {
+  username: "",
+  name: "",
+  lastName: "",
+  picture: "",
+  email: "",
+  password: "",
+};
+
 export const reducer = (state, action) => {
   const { type, target, user } = action;
 

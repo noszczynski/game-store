@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import GapWrapper from "../Wrappers/GapWrapper";
 import Button from "../Button";
-import ResetButton from "../Reset/ResetButton";
 import LoginInput from "./LoginInput";
 import { LOGIN_VIEWS } from "./Login";
 import PropTypes from "prop-types";
 import { authUser } from "../../api/api";
+import LinkButton from "../Link/LinkButton";
+import Checkbox from "./Checkbox";
 
 const LoginForm = ({ title, setView }) => {
   const [email, setEmail] = useState("");
@@ -47,21 +46,14 @@ const LoginForm = ({ title, setView }) => {
         type={"password"}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        name={"email"}
+        name={"password"}
         label={"Password"}
       />
       <div>
-        <FormControlLabel
-          value="end"
-          control={
-            <Checkbox
-              color="primary"
-              value={rememberMe}
-              onChange={({ target: { checked } }) => setRemember(checked)}
-            />
-          }
-          label="Remember Me"
-          labelPlacement="end"
+        <Checkbox
+          label={"remember me"}
+          value={rememberMe}
+          setValue={setRemember}
         />
       </div>
       <GapWrapper>
@@ -71,9 +63,12 @@ const LoginForm = ({ title, setView }) => {
         <Button onClick={submitAsGuest}>Login as guest</Button>
       </GapWrapper>
       <div>
-        <ResetButton onClick={() => setView(LOGIN_VIEWS.REGISTER)}>
-          Register
-        </ResetButton>
+        <p>
+          Don't have an account? Come on, &nbsp;
+          <LinkButton onClick={() => setView(LOGIN_VIEWS.REGISTER)}>
+            create an account
+          </LinkButton>
+        </p>
       </div>
     </>
   );

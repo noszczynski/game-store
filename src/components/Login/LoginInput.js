@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import styled from "styled-components"
+import PropTypes from "prop-types"
 
 const Wrapper = styled.div`
   position: relative;
@@ -16,8 +16,9 @@ const Label = styled.label`
   transform: translateY(-50%);
   font-size: 14px;
   font-weight: ${({ theme }) => theme.sizes.fontWeight.medium};
+  cursor: text;
 
-  ${({ isFocus }) => isFocus && "transform: translate(-1rem, -300%)"}
+  ${({ isFocus }) => isFocus && "transform: translate(-1rem, -250%)"}
 `;
 
 const Input = styled.input`
@@ -43,10 +44,11 @@ const LoginInput = ({ label, name, value, ...props }) => {
       </Label>
       <Input
         id={name}
-        {...props}
         value={value}
+        name={name}
         onFocus={() => handleFocus(true)}
         onBlur={() => handleFocus(false)}
+        {...props}
       />
     </Wrapper>
   );

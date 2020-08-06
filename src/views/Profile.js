@@ -2,7 +2,12 @@ import React, { useEffect, useReducer, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import Input from "../components/Input/Input";
-import { FIELD_NAMES, PROFILE_ACTION_TYPES, reducer } from "../profileReducer";
+import {
+  FIELD_NAMES,
+  PROFILE_ACTION_TYPES,
+  PROFILE_INITIAL_STATE,
+  reducer,
+} from "../reducers/profileReducer";
 import { getSiteData, PAGES } from "../api/api";
 import ResetButton from "../components/Reset/ResetButton";
 import GapWrapper from "../components/Wrappers/GapWrapper";
@@ -36,15 +41,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const Profile = () => {
-  const initialState = {
-    username: "",
-    name: "",
-    lastName: "",
-    picture: "",
-    email: "",
-    password: "",
-  };
-  const [data, dispatch] = useReducer(reducer, initialState);
+  const [data, dispatch] = useReducer(reducer, PROFILE_INITIAL_STATE);
   const [siteData, setSiteData] = useState(null);
 
   useEffect(() => {
