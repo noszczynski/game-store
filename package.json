@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "eslint": "^6.6.0",
+    "gsap": "^3.4.2",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -38,7 +39,9 @@
   "devDependencies": {
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
+    "moment": "^2.27.0",
     "prop-types": "^15.7.2",
+    "react-slideshow-image": "^3.0.2",
     "styled-components": "^5.1.1"
   }
 }

@@ -1,5 +1,7 @@
 export const PROFILE_ACTION_TYPES = {
   CHANGE: "CHANGE",
+  SET: "SET",
+  RESET: "RESET",
 };
 
 export const FIELD_NAMES = {
@@ -10,8 +12,17 @@ export const FIELD_NAMES = {
   PASSWORD: "password",
 };
 
+export const PROFILE_INITIAL_STATE = {
+  username: "",
+  name: "",
+  lastName: "",
+  picture: "",
+  email: "",
+  password: "",
+};
+
 export const reducer = (state, action) => {
-  const { type, target } = action;
+  const { type, target, user } = action;
 
   switch (type) {
     case PROFILE_ACTION_TYPES.CHANGE: {
@@ -38,6 +49,35 @@ export const reducer = (state, action) => {
         default:
           return state;
       }
+    }
+    case PROFILE_ACTION_TYPES.SET: {
+      const { username, firstName, lastName, picture, email } = user;
+      return {
+        username: username,
+        name: firstName,
+        lastName: lastName,
+        picture: picture,
+        email: email,
+        password: "",
+        defaultState: user,
+      };
+    }
+    case PROFILE_ACTION_TYPES.RESET: {
+      const {
+        username,
+        firstName,
+        lastName,
+        picture,
+        email,
+      } = state.defaultState;
+      return {
+        ...state,
+        username: username,
+        name: firstName,
+        lastName: lastName,
+        picture: picture,
+        email: email,
+      };
     }
     default:
       return state;

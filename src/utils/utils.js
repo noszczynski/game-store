@@ -1,3 +1,5 @@
+import { apiUrl } from "../api/api";
+
 const objectToArray = (obj) => {
   const arr = [];
   Object.keys(obj).map((key) => arr.push(obj[key]));
@@ -20,4 +22,6 @@ const filterArrayByFields = (term, arr = [], fields = []) => {
 
 const getLocalUser = () => JSON.parse(sessionStorage.getItem("user"));
 
-export { objectToArray, filterArrayByFields, getLocalUser };
+const withHostAddress = (str) => `${apiUrl}${str}`;
+
+export { objectToArray, filterArrayByFields, getLocalUser, withHostAddress };

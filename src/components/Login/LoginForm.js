@@ -1,30 +1,19 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import GapWrapper from "../Wrappers/GapWrapper";
+import Button from "../Button";
+import LoginInput from "./LoginInput";
+import { LOGIN_VIEWS } from "./Login";
 import PropTypes from "prop-types";
 import { authUser } from "../../api/api";
-import ResetButton from "../Reset/ResetButton";
+import LinkButton from "../Link/LinkButton";
+import Checkbox from "./Checkbox";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: ${({ theme }) => theme.sizes.padding.lite};
-  width: 50%;
-  min-width: 600px;
-  margin: 0 auto;
-  background-color: ${({ theme }) => theme.colors.activeFontColor};
-  min-height: 50vh;
-`;
-
-const LoginInput = styled.input``;
-
-const LoginForm = () => {
+const LoginForm = ({ title, setView }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRemember] = useState(true);
 
-  const login = (email, password) => {
+  const login = (email, password, rememberMe) => {
     authUser(email, password).then(({ jwt, user }) => {
       window.sessionStorage.setItem("token", jwt);
       sessionStorage.setItem("user", JSON.stringify(user));
@@ -36,37 +25,58 @@ const LoginForm = () => {
   };
 
   const submit = () => {
-    login(email, password);
+    login(email, password, rememberMe);
   };
 
   const submitAsGuest = () => {
-    login("guest@guest.com", "password");
+    login("guest@guest.com", "password", false);
   };
 
   return (
-    <Wrapper>
+    <>
+      <h2>{title}</h2>
       <LoginInput
         type={"text"}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder={"login"}
+        name={"email"}
+        label={"Login or email"}
       />
       <LoginInput
-        type={"text"}
+        type={"password"}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder={"password"}
+        name={"password"}
+        label={"Password"}
       />
-      <label htmlFor={"rememberMe"}>Remember me</label>
-      <input type={"checkbox"} name={"rememberMe"} />
-      <ResetButton onClick={submit}>Login</ResetButton>
-      <ResetButton onClick={submitAsGuest}>Login as guest</ResetButton>
-    </Wrapper>
+      <div>
+        <Checkbox
+          label={"remember me"}
+          value={rememberMe}
+          setValue={setRemember}
+        />
+      </div>
+      <GapWrapper>
+        <Button onClick={submit} active>
+          Login
+        </Button>
+        <Button onClick={submitAsGuest}>Login as guest</Button>
+      </GapWrapper>
+      <div>
+        <p>
+          Don't have an account? Come on, &nbsp;
+          <LinkButton onClick={() => setView(LOGIN_VIEWS.REGISTER)}>
+            create an account
+          </LinkButton>
+        </p>
+      </div>
+    </>
   );
 };
 
 LoginForm.propTypes = {
-  setTheme: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  setView: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
