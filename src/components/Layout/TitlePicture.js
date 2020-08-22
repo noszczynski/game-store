@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   margin: ${({ theme }) => theme.sizes.margin.lite} 0;
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 const TitlePicture = ({ source }) => {
   return (
     <Wrapper>
-      <img src={source} alt={"title image"} />
+      <img src={source} alt={"game title"} />
     </Wrapper>
   );
 };

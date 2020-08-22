@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { withHostAddress } from "../utils/utils";
+import React from "react"
+import PropTypes from "prop-types"
+import styled from "styled-components"
+import { withHostAddress } from "../utils/utils"
 
 const Wrapper = styled.div`
   width: 100%;
@@ -10,9 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const Premiere = ({ game }) => {
-  console.log(game);
-  const { relatedTo, premiereDate, cover, title } = game;
-
+  const { cover } = game;
   return (
     game && (
       <Wrapper>

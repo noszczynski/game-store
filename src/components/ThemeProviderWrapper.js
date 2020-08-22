@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
-import { darkTheme, lightTheme } from "../utils/theme"
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "../utils/theme";
 
 const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
